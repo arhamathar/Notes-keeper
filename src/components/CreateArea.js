@@ -22,6 +22,10 @@ function CreateArea(props) {
             return;
         }
         props.onAdd(note);
+        setNote({
+            title: "",
+            content: ""
+        });
     }
 
     return (
