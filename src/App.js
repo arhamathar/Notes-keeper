@@ -8,9 +8,12 @@ function App() {
     const [notes, setNotes] = useState([]);
 
     const addNoteHandler = (newNote) => {
+        let notesData;
         setNotes((prevNote) => {
-            return [...prevNote, newNote];
+            notesData = [...prevNote, newNote];
+            return notesData;
         });
+        localStorage.setItem('notesData', JSON.stringify(notesData));
     }
 
     const deleteNoteHandler = (id) => {
@@ -21,12 +24,18 @@ function App() {
         });
     }
 
+    let notesData = JSON.parse(localStorage.getItem('notesData'));
+    if (notesData === null) {
+        notesData = [];
+    }
+    console.log(notesData);
+
     return (
         <div>
             <Header />
             <CreateArea onAdd={addNoteHandler} />
             <div className="notes">
-                {notes.map((note, ind) => {
+                {notesData.map((note, ind) => {
                     return (<Note
                         key={ind}
                         id={ind}

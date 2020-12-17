@@ -14,7 +14,7 @@ function CreateArea(props) {
         setNote(prevNote => {
             return {
                 ...prevNote,
-                [e.target.name]: e.target.value
+                [e.target.name]: e.target.value,
             }
         });
     }
@@ -37,7 +37,7 @@ function CreateArea(props) {
 
     return (
         <div>
-            <form className="create-note">
+            <form className="create-note" onSubmit={onClickHandler}>
                 {expand && <input
                     name="title"
                     placeholder="Title"
