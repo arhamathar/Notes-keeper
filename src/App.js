@@ -16,19 +16,22 @@ function App() {
         localStorage.setItem('notesData', JSON.stringify(notesData));
     }
 
+    let notesData = JSON.parse(localStorage.getItem('notesData'));
+    if (notesData === null) {
+        notesData = [];
+    }
+    console.log(notesData);
+
     const deleteNoteHandler = (id) => {
         setNotes((prevNote) => {
             return prevNote.filter((note, index) => {
                 return index !== id;
             });
         });
+        notesData.splice(id, 1);
+        localStorage.setItem("notesData", JSON.stringify(notesData));
     }
 
-    let notesData = JSON.parse(localStorage.getItem('notesData'));
-    if (notesData === null) {
-        notesData = [];
-    }
-    console.log(notesData);
 
     return (
         <div>
