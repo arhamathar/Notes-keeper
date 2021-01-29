@@ -43,6 +43,7 @@ function CreateArea(props) {
                     placeholder="Title"
                     onChange={onChangeHandler}
                     value={note.title}
+                    autoComplete="off"
                 />}
                 <textarea
                     name="content"
