@@ -20,7 +20,8 @@ function App() {
     if (notesData === null) {
         notesData = [];
     }
-    console.log(notesData);
+
+    console.log(notes);
 
     const deleteNoteHandler = (id) => {
         setNotes((prevNote) => {
