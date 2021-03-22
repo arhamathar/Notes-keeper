@@ -83,7 +83,7 @@ footer p {
 }
 
 .note button:hover{
-  color: #354152;
+  color: #f5ba13;
 }
 
 form.create-note {
@@ -99,6 +99,8 @@ form.create-note {
   box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
 
+.edit-note input,
+.edit-note textarea,
 form input,
 form textarea {
   width: 100%;
@@ -109,9 +111,27 @@ form textarea {
   font-family: inherit;
   resize: none;
 }
-form input{  
+form input,
+.edit-note input{  
   border-bottom: 1px solid #777;
   margin-bottom: 0.5rem;
+}
+
+.edit-note textarea{
+  display: block;
+  width: 100%;
+}
+
+.edit-note{
+  width: 300px;
+}
+
+.edit-note button{
+  margin: 0 .25rem;
+}
+
+.edit-note button:hover{  
+  color: #f5ba13;
 }
 
 form.create-note button {

@@ -13,13 +13,13 @@ function App() {
             notesData = [...prevNote, newNote];
             return notesData;
         });
-        localStorage.setItem('notesData', JSON.stringify(notesData));
+        // localStorage.setItem('notesData', JSON.stringify(notesData));
     }
 
-    let notesData = JSON.parse(localStorage.getItem('notesData'));
-    if (notesData === null) {
-        notesData = [];
-    }
+    // let notesData = JSON.parse(localStorage.getItem('notesData'));
+    // if (notesData === null) {
+    //     notesData = [];
+    // }
 
     console.log(notes);
 
@@ -29,8 +29,8 @@ function App() {
                 return index !== id;
             });
         });
-        notesData.splice(id, 1);
-        localStorage.setItem("notesData", JSON.stringify(notesData));
+        // notesData.splice(id, 1);
+        // localStorage.setItem("notesData", JSON.stringify(notesData));
     }
 
 
@@ -39,7 +39,7 @@ function App() {
             <Header />
             <CreateArea onAdd={addNoteHandler} />
             <div className="notes">
-                {notesData.map((note, ind) => {
+                {notes.map((note, ind) => {
                     return (<Note
                         key={ind}
                         id={ind}

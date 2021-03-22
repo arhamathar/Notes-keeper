@@ -14,7 +14,7 @@ function CreateArea(props) {
         setNote(prevNote => {
             return {
                 ...prevNote,
-                [e.target.name]: e.target.value,
+                [e.target.name]: e.target.value
             }
         });
     }
