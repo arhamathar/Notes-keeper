@@ -35,6 +35,12 @@ function Note(props) {
 
     const onCancelHandler = () => {
         setEdit(false);
+        setEditValue((prev) => {
+            return {
+                title: props.title,
+                content: props.content
+            }
+        });
     }
 
     if (edit) {
