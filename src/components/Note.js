@@ -29,7 +29,8 @@ function Note(props) {
     }
 
     const onSaveHandler = () => {
-        console.log("saved");
+        props.onEdit(editValue, props.id);
+        setEdit(false);
     }
 
     const onCancelHandler = () => {

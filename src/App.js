@@ -8,20 +8,22 @@ function App() {
     const [notes, setNotes] = useState([]);
 
     const addNoteHandler = (newNote) => {
-        let notesData;
         setNotes((prevNote) => {
-            notesData = [...prevNote, newNote];
-            return notesData;
+            return [...prevNote, newNote];
         });
-        // localStorage.setItem('notesData', JSON.stringify(notesData));
     }
 
-    // let notesData = JSON.parse(localStorage.getItem('notesData'));
-    // if (notesData === null) {
-    //     notesData = [];
-    // }
-
-    console.log(notes);
+    const editNoteHandler = (editedValue, ind) => {
+        setNotes(prevNotes => {
+            return prevNotes.map((note, i) => {
+                return i === ind ? {
+                    ...note,
+                    title: editedValue.title,
+                    content: editedValue.content
+                } : note
+            });
+        });
+    }
 
     const deleteNoteHandler = (id) => {
         setNotes((prevNote) => {
@@ -29,10 +31,7 @@ function App() {
                 return index !== id;
             });
         });
-        // notesData.splice(id, 1);
-        // localStorage.setItem("notesData", JSON.stringify(notesData));
     }
-
 
     return (
         <div>
@@ -45,6 +44,7 @@ function App() {
                         id={ind}
                         title={note.title}
                         content={note.content}
+                        onEdit={editNoteHandler}
                         onDelete={deleteNoteHandler}
                     />)
                 })}
