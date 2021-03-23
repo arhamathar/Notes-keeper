@@ -49,7 +49,9 @@ function App() {
     return (
         <div>
             <Header />
-            <CreateArea onAdd={addNoteHandler} />
+            <CreateArea
+                onAdd={addNoteHandler}
+            />
             <div className="notes">
                 {notes.map((note, ind) => {
                     return (<Note

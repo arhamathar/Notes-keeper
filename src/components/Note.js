@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TwitterPicker } from 'react-color';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
@@ -6,6 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 function Note(props) {
     const [edit, setEdit] = useState(false);
+    const [background, setBackground] = useState('#fff');
     const [editValue, setEditValue] = useState({
         title: props.title,
         content: props.content
@@ -43,6 +45,10 @@ function Note(props) {
         });
     }
 
+    const handleChangeComplete = (color) => {
+        setBackground(color.hex);
+    }
+
     if (edit) {
         return (
             <div className="edit-note note">
@@ -69,7 +75,7 @@ function Note(props) {
     }
     else {
         return (
-            <div className="note">
+            <div className="note" style={{ backgroundColor: background }}>
                 <h1>{props.title}</h1>
                 <p>{props.content}</p>
                 <button onClick={onDeleteHandler}>
@@ -78,6 +84,10 @@ function Note(props) {
                 <button onClick={onEditHandler}>
                     <EditIcon />
                 </button>
+                <TwitterPicker
+                    color={background}
+                    onChangeComplete={handleChangeComplete}
+                />
             </div>
         );
     }
