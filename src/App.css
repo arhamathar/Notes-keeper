@@ -80,10 +80,7 @@ footer p {
   height: 36px;
   cursor: pointer;
   outline: none;
-}
-
-.note button:hover{
-  color: #f5ba13;
+  margin: 0 .25rem;
 }
 
 form.create-note {
@@ -124,14 +121,6 @@ form input,
 
 .edit-note{
   width: 300px;
-}
-
-.edit-note button{
-  margin: 0 .25rem;
-}
-
-.edit-note button:hover{  
-  color: #f5ba13;
 }
 
 form.create-note button {

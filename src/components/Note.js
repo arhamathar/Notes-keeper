@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-import { TwitterPicker } from 'react-color';
+import { CirclePicker } from 'react-color';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import DeleteIcon from '@material-ui/icons/Delete';
+import PaletteIcon from '@material-ui/icons/Palette';
+
+const DEFAULT_COLORS = [
+    "#f44336", "#e91e63", "#9c27b0", "#03a9f4", "#00bcd4", "#8ED1FC", "#F78DA7",
+    "#009688", "#7BDCB5", "#8bc34a", "#cddc39", "#ffeb3b", "#ffc107", "#ABB8C3"
+];
 
 function Note(props) {
     const [edit, setEdit] = useState(false);
     const [background, setBackground] = useState('#fff');
+    const [showColor, setShowColor] = useState(false);
     const [editValue, setEditValue] = useState({
         title: props.title,
         content: props.content
@@ -45,8 +52,13 @@ function Note(props) {
         });
     }
 
+    const showColorHandler = () => {
+        setShowColor(true);
+    }
+
     const handleChangeComplete = (color) => {
         setBackground(color.hex);
+        setShowColor(false);
     }
 
     if (edit) {
@@ -75,20 +87,28 @@ function Note(props) {
     }
     else {
         return (
-            <div className="note" style={{ backgroundColor: background }}>
-                <h1>{props.title}</h1>
-                <p>{props.content}</p>
-                <button onClick={onDeleteHandler}>
-                    <DeleteIcon />
-                </button>
-                <button onClick={onEditHandler}>
-                    <EditIcon />
-                </button>
-                <TwitterPicker
-                    color={background}
-                    onChangeComplete={handleChangeComplete}
-                />
-            </div>
+            <React.Fragment>
+                <div className="note" style={{ backgroundColor: background }}>
+                    <h1>{props.title}</h1>
+                    <p>{props.content}</p>
+                    <button onClick={onDeleteHandler}>
+                        <DeleteIcon />
+                    </button>
+                    <button onClick={onEditHandler}>
+                        <EditIcon />
+                    </button>
+                    <button onClick={showColorHandler}>
+                        <PaletteIcon />
+                    </button>
+                    {showColor && <CirclePicker
+                        circleSize={24}
+                        circleSpacing={12}
+                        colors={DEFAULT_COLORS}
+                        color={background}
+                        onChangeComplete={handleChangeComplete}
+                    />}
+                </div>
+            </React.Fragment>
         );
     }
 }
